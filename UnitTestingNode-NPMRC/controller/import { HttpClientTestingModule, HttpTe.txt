@@ -1,0 +1,69 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { getTestBed, TestBed } from '@angular/core/testing';
+
+import { WindowTerminalService } from './window-terminal.service';
+
+describe('WindowTerminalService', () => {
+
+  let service: WindowTerminalService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [WindowTerminalService],
+    });
+    service = getTestBed().get(WindowTerminalService);
+    httpMock = getTestBed().get(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
+  });
+
+  it('should create the single instance of service', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should execute the given command', () => {
+    const command = 'systemInfo';
+    service.executeCommand(command).subscribe((data) => {
+      expect(data).toEqual(dummyExecuteCommandOuput);
+      expect(data.commandOuput.content.status).toBeTruthy();
+    });
+    const request = httpMock.expectOne(`${service.baseUrlString}/api/executeCommands/${command}`);
+    expect(request.request.method).toBe('GET');
+    request.flush(dummyExecuteCommandOuput);
+  });
+
+  it('should return the commands which is sucesfully executed', () => {
+    const command = 'systemInfo';
+    service.getExecutedCommands().subscribe((data) => {
+      expect(data).toEqual(dummyExecuteCommandOuput);
+      expect(data.commandOuput.content.executedCommands.length).toBeGreaterThan(1);
+    });
+
+    const request = httpMock.expectOne(`${service.baseUrlString}/api/getExecutedCommands`);
+    expect(request.request.method).toBe('GET');
+    request.flush(dummyExecuteCommandOuput);
+  });
+
+});
+
+const dummyExecuteCommandOuput = {
+  commandOuput: {
+    content: {
+      output: '',
+      executedCommands: [
+        'systeminfo',
+        'systeminfo',
+        'ping google.com',
+        'ping google.com',
+        'systeminfo',
+        'systeminfo',
+      ],
+      status: true,
+    },
+  },
+};
+

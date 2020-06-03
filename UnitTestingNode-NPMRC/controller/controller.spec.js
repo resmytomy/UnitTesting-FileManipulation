@@ -14,7 +14,7 @@ describe("Testing the controller for file manipulation", () => {
     let jsonRe;
 
     let res = {
-      send(data) {
+      json(data) {
         this.jsonRe = data;
       }
     };
@@ -74,7 +74,7 @@ describe("Testing the controller for file manipulation", () => {
     let jsonRe;
 
     let res = {
-      send(data) {
+      json(data) {
         this.jsonRe = data;
       }
     };
@@ -106,7 +106,7 @@ describe("Testing the controller for file manipulation", () => {
     let jsonRe;
 
     let res = {
-      send(data) {
+      json(data) {
         this.jsonRe = data;
       }
     };
