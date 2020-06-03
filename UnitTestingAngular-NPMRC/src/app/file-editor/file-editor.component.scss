@@ -1,0 +1,35 @@
+
+@media all and (min-width: 768px) {
+  table {
+    width: 450px;
+    margin: 0 auto;
+    border: 1px solid #d1d1d1;
+    border-collapse: collapse;
+    font-size:13px;
+    color:#010101;
+    tr  {
+      border-bottom: 1px solid #d3d3d3;
+      th {
+        padding: 5px 2px;
+        background-color: #f1f5fd;
+      }
+      th:nth-child(2) {
+        border-left: 1px solid #d3d3d3;
+      }
+      td {
+        padding: 5px 2px;
+        span {
+          display:inline-block;
+          width:200px;
+        }
+      }
+      td:nth-child(2) {
+        border-left: 1px solid #d3d3d3;
+      }
+      :hover {
+        background-color: #f1f5fd;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,35 @@
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Data From npmrc</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2">         
+      </span>
+      <table class="table  table-responsive-md  text-center">
+        <tr>
+          <th class="text-center">Key</th>
+          <th class="text-center">Value</th>
+      
+        </tr>
+        <tr *ngFor="let fileContents of fileContentList let id = index">
+          <td>
+            <span (blur)="updateList(id, 'name', $event)" contenteditable="true">{{fileContents.name}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (blur)="updateList(id, 'value', $event)" >{{fileContents.value}}</span>
+          </td>
+         
+      
+        </tr>
+      </table>
+    </div>
+    <div class="text-center margin-top-20">
+      <button type="button" mdbBtn  rounded="true" size="sm" class="my-0" color="black" id ="update" (click)="updateAll()">Update</button>
+      <button type="button" mdbBtn  rounded="true" size="sm" class="my-0" color="black" id="add" (click)="add()">ADd Row</button>
+
+
+      
+    </div>
+  </div>
+</div>
+<!-- Editable table -->
