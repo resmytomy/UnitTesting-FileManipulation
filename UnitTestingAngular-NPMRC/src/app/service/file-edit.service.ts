@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class FileEditService {
 
   c 
+  baseUrlString: string;
   constructor(private http: HttpClient) {
   }
 
@@ -16,9 +17,18 @@ export class FileEditService {
     
     return this.http.get<string>('http://localhost:8080/')
   }
-  updateFileContents(data): Observable<string> {
+// public  updateFileContents(data): Observable<any> {
 
-    return this.http.post<string>('http://localhost:8080/edit/ ',{'data':data});
+//     return this.http.post<any>('http://localhost:8080/edit/ ',{'data':data});
 
-  }
+//   }
+  public updateFileContents(data: any): Observable<any> {
+    return this.http.post('http://localhost:8080/edit', {'data':data});
+  } 
 }
+
+
+
+
+
+

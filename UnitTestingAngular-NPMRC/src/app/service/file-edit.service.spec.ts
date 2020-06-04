@@ -23,7 +23,6 @@ describe('FileEditService', () => {
   });
 
   afterEach(() => {
-    // After every test, assert that there are no more pending requests.
     httpTestingController.verify();
     });
     
@@ -43,29 +42,18 @@ describe('FileEditService', () => {
   });
   it('should get the write  content to the file',()=>{
     
-    let data=[{
-      index: 0,
-      name: "Hellow New",
-      value: "${appdata}"
-  },
-  {
-      index: 1,
-      name: "test123",
-      value: "${appdata}"
-  }]
-    service.updateFileContents(data).subscribe((dataFromResp) => {
-      expect(dataFromResp).toEqual(fakeResp);
-    });
-
-    // const request = httpTestingController.expectOne('http://localhost:8080/edit');
-    // console.log(request.request.url);
-    
-    httpTestingController.expectOne({
-      url: 'http://localhost:8080/edit',
-      method: 'POST'
-    }).flush(data);
+  service.updateFileContents('data').subscribe((data) => {
+    expect(data).toEqual(fakeResp);
+  });
+  const request = httpTestingController.expectOne('http://localhost:8080/edit');
+  expect(request.request.method).toBe('POST');
+  request.flush(fakeResp);
 
   });
+    
+    
+
+ 
 
 
 });
