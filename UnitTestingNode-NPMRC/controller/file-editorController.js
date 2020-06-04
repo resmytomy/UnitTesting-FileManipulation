@@ -1,4 +1,8 @@
 class fileEditorController{ 
+  constructor(){
+    
+  }
+
   writeFileController (req, res)  {
   const FileUtil=require('../service/fileutil')
   const futil=new FileUtil();

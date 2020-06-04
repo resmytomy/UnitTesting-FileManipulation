@@ -35,7 +35,6 @@ describe("Testing the API for file manipulation", () => {
                 expect(response.body).toContain("test123");    
                
             })
-            fs.writeFile.mockClear();
             done();
        
     });
